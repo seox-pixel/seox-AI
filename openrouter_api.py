@@ -16,17 +16,16 @@ def call_openrouter_api(keyword):
     """
     Call the OpenRouter API to get keyword suggestions
     """
-    url = "https://openrouter.ai/api/v1/chat/completions"
+    url = "https://api.together.xyz/v1/chat/completions"
     
     # API key
     api_key = "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"
     
     # Headers
-    headers = {
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {api_key}",
-        "HTTP-Referer": "https://localhost:3000"
-    }
+   headers = {
+    "Authorization": "Bearer tgp_v1_TAZIzhzvcLNui9yczKBCpb1hXOGvAl8dKr4buEksnVg",
+    "Content-Type": "application/json"
+}
     
     # Prepare the prompt for the AI
     system_prompt = """You are an SEO expert assistant. Your task is to provide keyword suggestions based on the user's input.
@@ -51,13 +50,13 @@ Format your response as a JSON array with objects containing these fields:
 Only return the JSON array, no other text."""
     
     # Prepare the payload - using a valid model ID from OpenRouter
-    payload = {
-        "model": "openai/gpt-3.5-turbo",  # Changed from "openchat/openchat-3.5" to a valid model
-        "messages": [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": f"Provide SEO keyword suggestions for: {keyword}"}
-        ]
-    }
+ payload = {
+    "model": "mistralai/Mistral-7B-Instruct-v0.1",
+    "messages": [
+        {"role": "system", "content": "You are an expert SEO assistant."},
+        {"role": "user", "content": "Give me keywords for digital marketing blog"}
+    ]
+}
     
     try:
         logger.info(f"Sending request to OpenRouter API for keyword: {keyword}")
