@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEOX - Keyword Research Results</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            width: 95%;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .search-term {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #7f8c8d;
+            font-size: 1.2rem;
+        }
+        .search-term span {
+            font-weight: bold;
+            color: #3498db;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+            position: sticky;
+            top: 0;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .keyword {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .back-btn {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            margin-top: 2rem;
+            transition: background-color 0.3s;
+        }
+        .back-btn:hover {
+            background-color: #2980b9;
+        }
+        .error-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SEOX Keyword Research Results</h1>
+        
+        {% if error %}
+            <div class="error-message">
+                <p>{{ error }}</p>
+            </div>
+        {% else %}
+            <p class="search-term">Results for: <span>{{ keyword }}</span></p>
+            
+            {% if keywords %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Keyword</th>
+                            <th>Description</th>
+                            <th>User Intent</th>
+                            <th>Content Angle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in keywords %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td class="keyword">{{ item.keyword }}</td>
+                            <td>{{ item.description }}</td>
+                            <td>{{ item.intent }}</td>
+                            <td>{{ item.angle }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No keyword suggestions found. Please try a different search term.</p>
+            {% endif %}
+        {% endif %}
+        
+        <a href="/" class="back-btn">New Search</a>
+    </div>
+</body>
+</html>
