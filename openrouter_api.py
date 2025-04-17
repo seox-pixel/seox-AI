@@ -19,7 +19,7 @@ def call_openrouter_api(keyword):
     url = "https://openrouter.ai/api/v1/chat/completions"
     
     # API key
-    api_key = "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"
+    api_key = os.getenv("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")
     
     # Headers
     headers = {
